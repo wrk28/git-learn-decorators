@@ -7,9 +7,10 @@ def logger(old_function):
         result = old_function(*args, **kwargs)
         date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         name = old_function.__name__
+        str_result = str(result)
         args_list = ', '.join(repr(arg) for arg in args)
         kwargs_list = ', '.join(f'{key}={value}' for key, value in kwargs.items())
-        record = f'{date:<20} | {name:<15} | {result:<15} | {args_list:<20} | {kwargs_list}\n'
+        record = f'{date:<20} | {name:<15} | {str_result:<15} | {args_list:<20} | {kwargs_list}\n'
         with open('main.log', 'a') as f:
             f.write(record)
         return result
